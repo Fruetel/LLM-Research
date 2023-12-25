@@ -13,7 +13,7 @@ if [ ! -f "mixtral-8x7b-instruct-v0.1.Q5_0.gguf" ]; then
     wget https://huggingface.co/TheBloke/Mixtral-8x7B-Instruct-v0.1-GGUF/resolve/main/mixtral-8x7b-instruct-v0.1.Q5_0.gguf
 fi
 
-pip install llama-cpp-python[server]
+CMAKE_ARGS="-DLLAMA_CUBLAS=on" pip install llama-cpp-python[server]
 
 # ./server -m mixtral-8x7b-instruct-v0.1.Q5_0.gguf -ngl 33 -c 16384 --port 31336 --host 0.0.0.0
 
