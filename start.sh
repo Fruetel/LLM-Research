@@ -8,9 +8,16 @@ fi
 cd llama.cpp
 make LLAMA_CUBLAS=1
 
-# Check if the .gguf file does not exist
-if [ ! -f "mixtral-8x7b-instruct-v0.1.Q5_0.gguf" ]; then
-    wget https://huggingface.co/TheBloke/Mixtral-8x7B-Instruct-v0.1-GGUF/resolve/main/mixtral-8x7b-instruct-v0.1.Q5_0.gguf
+if [ $FORCE_DL = true ]; then
+  rm -f dolphin-2.6-mixtral-8x7b.Q5_0.gguf
 fi
 
-./server -m mixtral-8x7b-instruct-v0.1.Q5_0.gguf -ngl 33 -c 16384 --port 31336 --host 0.0.0.0
+ls -al
+
+# Check if the .gguf file does not exist
+if [ ! -f "dolphin-2.6-mixtral-8x7b.Q5_0.gguf" ]; then
+    echo "Downloading!"
+    wget https://huggingface.co/TheBloke/dolphin-2.6-mixtral-8x7b-GGUF/blob/main/dolphin-2.6-mixtral-8x7b.Q5_0.gguf
+fi
+
+./server -m dolphin-2.6-mixtral-8x7b.Q5_0.gguf -ngl 33 -c 16384 --port 31336 --host 0.0.0.0
