@@ -17,7 +17,7 @@ ls -al
 # Check if the .gguf file does not exist
 if [ ! -f "dolphin-2.6-mixtral-8x7b.Q5_0.gguf" ]; then
     echo "Downloading!"
-    wget https://huggingface.co/TheBloke/dolphin-2.6-mixtral-8x7b-GGUF/blob/main/dolphin-2.6-mixtral-8x7b.Q5_0.gguf
+    wget https://huggingface.co/TheBloke/dolphin-2.6-mixtral-8x7b-GGUF/resolve/main/dolphin-2.6-mixtral-8x7b.Q5_0.gguf?download=true -O dolphin-2.6-mixtral-8x7b.Q5_0.gguf
 fi
 
 ./server -m dolphin-2.6-mixtral-8x7b.Q5_0.gguf -ngl 33 -c 16384 --port 31336 --host 0.0.0.0
